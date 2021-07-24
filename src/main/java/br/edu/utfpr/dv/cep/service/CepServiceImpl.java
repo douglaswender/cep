@@ -30,4 +30,27 @@ public class CepServiceImpl implements CepService {
 		}
 	}
 
+	public Estado getEstadoPorCidade(String nomeCidade) {
+		try {
+			return new EstadoDAO().getEstadoPorCidade(nomeCidade);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Cidade[] getCidadesDeRondonia() {
+		try {
+			return new CidadeDAO().cidadesDeRondonia().toArray(new Cidade[] {});
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Estado[] getEstadosCidadeContem(String nomeCidade) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

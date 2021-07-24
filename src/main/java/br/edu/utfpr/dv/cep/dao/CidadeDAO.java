@@ -59,5 +59,30 @@ public class CidadeDAO {
 		
 		return list;
 	}
+	
+	public List<Cidade> cidadesDeRondonia() throws SQLException{
+		
+		Statement stmt = Conexao.getInstance().getConexao().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM city c inner join state b WHERE b.title = \"Rondônia\";");
+		
+		List<Cidade> list = new ArrayList<Cidade>();
+		
+		while(rs.next()){
+			Cidade e = new Cidade();
+			
+			e.setId(rs.getInt("id"));
+			e.setNome(rs.getString("title"));
+			e.setDdd(rs.getInt("iso_ddd"));
+			e.setPopulacao(rs.getInt("population"));
+			e.getEstado().setId(rs.getInt("id_state"));
+			e.getEstado().setNome(rs.getString("stateTitle"));
+			e.getEstado().setSigla(rs.getString("letter"));
+			
+			list.add(e);
+		}
+		
+		return list;
+	}
+
 
 }

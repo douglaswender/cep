@@ -18,4 +18,13 @@ public interface CepService {
 	@WebMethod
 	public Cidade[] listarCidadesPorEstado(String sigla);
 	
+	@WebMethod
+	public Estado getEstadoPorCidade(String nomeCidade);
+	
+	@WebMethod
+	public Cidade[] getCidadesDeRondonia();
+	
+	@WebMethod
+	public Estado[] getEstadosCidadeContem(String nomeCidade);
+	
 }

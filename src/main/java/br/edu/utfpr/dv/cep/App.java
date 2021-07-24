@@ -8,6 +8,6 @@ public class App
 {
     public static void main( String[] args )
     {
-    	Endpoint.publish("http://localhost:8081/cep", new CepServiceImpl());
+    	Endpoint.publish("http://localhost:3000/cep", new CepServiceImpl());
     }
 }
