@@ -49,8 +49,12 @@ public class CepServiceImpl implements CepService {
 	}
 
 	public Estado[] getEstadosCidadeContem(String nomeCidade) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return new EstadoDAO().getEstadosCidadeContem(nomeCidade).toArray(new Estado[] {});
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
