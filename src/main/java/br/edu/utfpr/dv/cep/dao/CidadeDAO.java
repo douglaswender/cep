@@ -61,15 +61,14 @@ public class CidadeDAO {
 	}
 	
 	public List<Cidade> cidadesDeRondonia() throws SQLException{
-		
-		Statement stmt = Conexao.getInstance().getConexao().createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM city c inner join state b WHERE b.title = \"Rondônia\";");
+		PreparedStatement stmt = Conexao.getInstance().getConexao().prepareStatement("SELECT c.*, s.title AS stateTitle, s.letter FROM city AS c INNER JOIN state AS s ON c.id_state = s.id WHERE s.title = ?");
+		stmt.setString(1, "Rondônia");
+		ResultSet rs = stmt.executeQuery();
 		
 		List<Cidade> list = new ArrayList<Cidade>();
 		
 		while(rs.next()){
 			Cidade e = new Cidade();
-			
 			e.setId(rs.getInt("id"));
 			e.setNome(rs.getString("title"));
 			e.setDdd(rs.getInt("iso_ddd"));
